@@ -7,39 +7,31 @@
   <link rel="stylesheet" href="Invitation.css">
 </head>
 <body>
-  <!-- Fullscreen background video -->
+  <!-- Background video -->
   <video autoplay muted loop playsinline id="bg-video">
     <source src="Invitation.mp4" type="video/mp4">
-    Your browser does not support the video tag.
   </video>
 
-  <!-- Rectangle container -->
+  <!-- Container -->
   <div class="container">
     <!-- Bear video -->
-    <video autoplay muted loop playsinline id="bear-video" poster="bear-fallback.png">
+    <video autoplay muted loop playsinline id="bear-video">
       <source src="Invitation2.mp4" type="video/mp4">
-      Your browser does not support the video tag.
     </video>
 
     <!-- Content -->
     <div class="content">
       <p>宝宝生日快乐！🎉</p>
-      <p>把元萱的一天送给我！૮₍ ˃ ⤙ ˂ ₎ა</p>
-      
-      <!-- Preset options -->
+      <p>把元萱的一天送给我！૮₍ ˃ ⤙ ˂ ₎ა:</p>
+
+      <!-- Options -->
       <div id="date-options">
-        <label>
-          <input type="radio" name="date" value="2025-11-01"> 周六，2025 11月一号
-        </label>
-        <label>
-          <input type="radio" name="date" value="2025-11-02"> 周日，2025 11月二号
-        </label>
-        <label>
-          <input type="radio" name="date" value="2025-11-08"> 周六，2025 11月八号
-        </label>
+        <label><input type="radio" name="date" value="2025-11-01"> 周六，2025 11月一号</label>
+        <label><input type="radio" name="date" value="2025-11-02"> 周日，2025 11月二号</label>
+        <label><input type="radio" name="date" value="2025-11-08"> 周六，2025 11月八号</label>
       </div>
 
-      <!-- Custom date input -->
+      <!-- Custom date -->
       <div id="custom-date-inputs" style="display:none;">
         <input type="number" id="day" placeholder="DD" min="1" max="31">
         <input type="number" id="month" placeholder="MM" min="1" max="12">
@@ -98,7 +90,7 @@
 
       if (selectedDate) {
         localStorage.setItem("dateChoice", selectedDate);
-        window.location.href = "Login Page.html"; // Page 2
+        window.location.href = "Login Page.html";
       } else {
         alert("Please pick or enter a date!");
       }
