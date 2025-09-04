@@ -32,7 +32,15 @@ body {
   justify-content: center;
   box-shadow: 0 8px 20px rgba(0,0,0,0.5);
 }
+@media (max-width: 768px) {
+  .container {
+    aspect-ratio: auto;   /* remove fixed ratio */
+    min-height: 80vh;     /* taller container */
+    padding: 20px 10px;   /* some breathing space */
+  }
 
+  .content {
+    padding: 10px;
 .container video {
   position: absolute;
   top: 50%;
@@ -145,3 +153,4 @@ button:hover {
     width: 100%; /* full width buttons on phone */
   }
 }
+
