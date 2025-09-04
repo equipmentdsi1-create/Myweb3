@@ -112,4 +112,36 @@ button {
   border-radius: 30px;
   background: hotpink;
   color: white;
-  font-size: clamp(1re
+  font-size: clamp(1rem, 4vw, 1.1rem);
+  cursor: pointer;
+  transition: 0.3s;
+  min-width: 100px;
+}
+
+button:hover {
+  background: deeppink;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .container {
+    width: 95%;
+    aspect-ratio: auto; /* allow flexible height on phone */
+    padding: 12px;
+  }
+  .content h1 {
+    font-size: 1.3rem;
+  }
+  .content p {
+    font-size: 1rem;
+  }
+  label input {
+    transform: scale(0.75); /* even smaller on phone */
+  }
+  .button-container {
+    flex-direction: column; /* stack buttons if no space */
+  }
+  .button-container button {
+    width: 100%; /* full width buttons on phone */
+  }
+}
