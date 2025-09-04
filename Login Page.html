@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login</title>
+  <link rel="stylesheet" href="Login.css">
+</head>
+<body>
+  <!-- Background video -->
+  <video id="bg-video" autoplay muted loop playsinline>
+    <source src="Loginpagebackground.mp4" type="video/mp4" />
+  </video>
+
+  <!-- Background music -->
+  <audio id="bg-music" preload="auto" loop>
+    <source src="Loginpagemusic.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- Fixed music toggle (top-right) -->
+  <button id="musicBtn" type="button">🎵 Play Music</button>
+
+  <!-- Login card -->
+  <div class="container">
+    <h1>Welcome BB 💕</h1>
+    <p>Please enter your username:</p>
+    <div class="field">
+      <input type="text" id="username" placeholder="Enter your Name" autocomplete="name" />
+    </div>
+
+    <p>Please enter the secret password to continue:</p>
+    <div class="field">
+      <input type="password" id="password" placeholder="Enter password" />
+    </div>
+
+    <p>Tips: Password will be revealed 12 hrs before the date</p>
+
+    <div class="actions">
+      <button id="loginBtn" type="button">Login</button>
+      <p id="error" class="error" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      'use strict';
+
+      const music     = document.getElementById('bg-music');
+      const musicBtn  = document.getElementById('musicBtn');
+      const loginBtn  = document.getElementById('loginBtn');
+      const username  = document.getElementById('username');
+      const password  = document.getElementById('password');
+      const errorMsg  = document.getElementById('error');
+
+      const CORRECT_PASSWORD = 'bayx2202';
+
+      function setError(msg){ errorMsg.textContent = msg || ''; }
+
+      function toggleMusic(){
+        if (music.paused) {
+          const playPromise = music.play();
+          if (playPromise && typeof playPromise.then === 'function') {
+            playPromise.then(() => {
+              musicBtn.textContent = '⏸ Pause Music';
+              setError('');
+            }).catch(err => {
+              console.warn('Playback prevented:', err);
+              setError('Tap the music button again to allow playback 🎵');
+            });
+          } else {
+            musicBtn.textContent = '⏸ Pause Music';
+          }
+        } else {
+          music.pause();
+          musicBtn.textContent = '🎵 Play Music';
+        }
+      }
+
+      function checkPassword(){
+        const nameVal = username.value.trim();
+        const passVal = password.value;
+
+        if (!nameVal){
+          setError('Please enter your username');
+          username.focus();
+          return;
+        }
+
+        if (passVal === CORRECT_PASSWORD){
+          window.location.href = 'invitation.html';
+        } else {
+          setError('Incorrect password. Try again!');
+          password.focus();
+          password.select?.();
+        }
+      }
+
+      musicBtn.addEventListener('click', toggleMusic);
+      loginBtn.addEventListener('click', checkPassword);
+      password.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') checkPassword();
+      });
+      [username, password].forEach(el => el.addEventListener('input', () => setError('')));
+    })();
+  </script>
+</body>
+</html>

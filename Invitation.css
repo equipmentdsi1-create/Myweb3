@@ -1,0 +1,113 @@
+/* Fullscreen background */
+#bg-video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -2;
+  object-fit: cover;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  padding: 5px;
+}
+
+.container {
+  position: relative;
+  width: 90%;
+  max-width: 600px;
+  aspect-ratio: 3 / 2;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+.container video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  background: rgba(255,255,255,1);
+  border-radius: 20px;
+}
+
+/* Content inside container */
+.content {
+  position: relative;
+  color: white;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
+  padding: 15px;
+  width: 85%;
+}
+
+h1 {
+  margin: 0 0 15px 0;
+  font-size: clamp(1.5rem, 5vw, 2.2rem);
+}
+
+p {
+  font-size: clamp(1rem, 3vw, 1.2rem);
+}
+
+/* Labels with bigger tap area */
+label {
+  display: block;
+  margin: 12px 0;
+  font-size: clamp(1rem, 4vw, 1.2rem);
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+label:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+label input {
+  margin-right: 8px;
+  transform: scale(1); 
+}
+
+#custom-date-inputs input {
+  width: 70px;
+  padding: 6px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+}
+
+
+/* Button more touch friendly */
+button {
+  margin-top: 20px;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 30px;
+  background: hotpink;
+  color: white;
+  font-size: clamp(1rem, 4vw, 1.2rem);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: deeppink;
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Date Invitation</title>
+  <link rel="stylesheet" href="Invitation.css">
+</head>
+<body>
+  <!-- Fullscreen background video -->
+  <video autoplay muted loop id="bg-video">
+    <source src="Invitation.mp4" type="video/mp4">
+  </video>
+
+  <!-- Rectangle container -->
+  <div class="container">
+    <video autoplay muted loop>
+      <source src="Invitation2.mp4" type="video/mp4">
+    </video>
+    <div class="content">
+      <p>宝宝生日快乐！🎉</p>
+      <p>把元萱的一天送给我！૮₍ ˃ ⤙ ˂ ₎ა:</p>
+      
+      <!-- Preset options -->
+      <div id="date-options">
+        <label>
+          <input type="radio" name="date" value="2025-11-01"> 周六，2025 11月一号
+        </label>
+        <label>
+          <input type="radio" name="date" value="2025-11-02"> 周日，2025 11月二号
+        </label>
+        <label>
+          <input type="radio" name="date" value="2025-11-08"> 周六，2025 11月八号
+        </label>
+      </div>
+
+      <!-- Custom date input (hidden by default) -->
+      <div id="custom-date-inputs" style="display:none;">
+        <input type="number" id="day" placeholder="DD" min="1" max="31">
+        <input type="number" id="month" placeholder="MM" min="1" max="12">
+        <input type="number" id="year" placeholder="YYYY" min="2025" max="2100">
+      </div>
+
+      <!-- Buttons -->
+      <div class="button-container">
+        <button id="otherDateBtn" type="button" onclick="showCustomDate()">Other</button>
+        <button id="returnBtn" type="button" onclick="returnToOptions()" style="display:none;">Return</button>
+        <button onclick="saveDate()">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const radios = document.getElementsByName("date");
+    const dateOptions = document.getElementById("date-options");
+    const customDateInputs = document.getElementById("custom-date-inputs");
+    const otherDateBtn = document.getElementById("otherDateBtn");
+    const returnBtn = document.getElementById("returnBtn");
+
+    function showCustomDate() {
+      dateOptions.style.display = "none";
+      customDateInputs.style.display = "block";
+      otherDateBtn.style.display = "none";
+      returnBtn.style.display = "inline-block";
+    }
+
+    function returnToOptions() {
+      customDateInputs.style.display = "none";
+      dateOptions.style.display = "block";
+      returnBtn.style.display = "none";
+      otherDateBtn.style.display = "inline-block";
+    }
+
+    function saveDate() {
+      let selectedDate = null;
+
+      if (customDateInputs.style.display === "block") {
+        const day = document.getElementById("day").value.padStart(2, "0");
+        const month = document.getElementById("month").value.padStart(2, "0");
+        const year = document.getElementById("year").value;
+
+        if (day && month && year) {
+          selectedDate = `${year}-${month}-${day}`;
+        }
+      } else {
+        for (let option of radios) {
+          if (option.checked) {
+            selectedDate = option.value;
+            break;
+          }
+        }
+      }
+
+      if (selectedDate) {
+        localStorage.setItem("dateChoice", selectedDate);
+        window.location.href = "Login Page.html"; // Page 2
+      } else {
+        alert("Please pick or enter a date!");
+      }
+    }
+  </script>
+</body>
+</html>
